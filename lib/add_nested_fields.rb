@@ -22,7 +22,7 @@ module AddNestedFields
 					page << "$(this).up('.#{class_id}').remove()"
 				end
 			else
-				form_builder.hidden_field( :_delete, :value => false) + link_to_function("(remove)") do |page|
+				form_builder.hidden_field( :_delete, :value => "0") + link_to_function("(remove)") do |page|
 					page << "$(this).up('.#{class_id}').hide();$(this).previous().value = 1"
 				end
 			end
