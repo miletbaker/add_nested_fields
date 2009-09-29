@@ -58,4 +58,21 @@ remove_nested_fields_for adds a link to a javascript function that if new, remov
 
 *dom_class* is the class of the HTML element that forms the whole of the partial, the function searches up from the link for a HTML element with the matching class and removes or hides it as above.
 
+Validation
+==========
+Your models should validate the nested models as expected however there are a couple of issues around the order validation is done and models are saved.
+
+If you would like to validate the presence of nested attributes, for example, with the above code, if you wanted to ensure that there was at least one ProductVariation present when saving the Product model, you could add something along the lines of the following to your validate method override in your Product model
+
+	def validate
+		...
+		# TODO: create validates_presence_of_nested_attributes
+		errors.add(:product_variations, " must have at least one variation.") unless product_variations.select {|var| var._delete != true}.length > 0
+		...
+	end
+
+This is needed because models are not removed until the save so in some cases the user may have requested to delete a nested model by setting _delete to true but at the time of validation the model is still present.
+
+There are also some issues validating that the parent_id is present in the child. [See the RailsForum.com thread for details](http://railsforum.com/viewtopic.php?pid=91229)
+
 Copyright (c) 2009 Go Tripod Ltd, released under the MIT license
