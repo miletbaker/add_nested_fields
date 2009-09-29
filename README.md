@@ -9,7 +9,7 @@ Installation
 To install as a plugin (Rails)
 
 	cd into your Rails root folder
-	script/plugin install git://github.com/miletbaker/decimalizer.git
+	script/plugin install git://github.com/miletbaker/add_nested_fields.git
 	
 Usage
 =====
