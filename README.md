@@ -1,7 +1,7 @@
 AddNestedFields
 ===============
 
-Adds two RJS helper methods to help work with accepts_nested_attributes_for and partials. Based on the method suggested by Marsvin on RailsForum.com: http://railsforum.com/viewtopic.php?pid=91229 
+Adds two RJS helper methods to help work with accepts_nested_attributes_for and partials. Based on the method suggested by Marsvin on [RailsForum.com](http://railsforum.com/viewtopic.php?pid=91229)
 
 Installation
 ============
