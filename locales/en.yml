@@ -1,0 +1,5 @@
+en:
+  add_nested_fields:
+    add: Add
+    remove: Remove
+    sure_delete: Are you sure you would like to delete this {obj}?

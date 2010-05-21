@@ -10,7 +10,7 @@ To install as a plugin (Rails)
 
 	cd into your Rails root folder
 	script/plugin install git://github.com/miletbaker/add_nested_fields.git
-	
+
 Usage
 =====
 
@@ -58,6 +58,12 @@ remove_nested_fields_for adds a link to a javascript function that if new, remov
 
 *dom_class* is the class of the HTML element that forms the whole of the partial, the function searches up from the link for a HTML element with the matching class and removes or hides it as above.
 
+You can optionally also supply:
+
+*:obj_name => *defaults to the form builders model name in lower case
+
+*:confirm => *message used in the confirm javascript pop-up. Replaces the string '{obj}' with the content of :obj_name
+
 Validation
 ==========
 Your models should validate the nested models as expected however there are a couple of issues around the order validation is done and models are saved.
@@ -74,5 +80,9 @@ If you would like to validate the presence of nested attributes, for example, wi
 This is needed because models are not removed until the save so in some cases the user may have requested to delete a nested model by setting _delete to true but at the time of validation the model is still present.
 
 There are also some issues validating that the parent_id is present in the child. [See the RailsForum.com thread for details](http://railsforum.com/viewtopic.php?pid=91229)
+
+I18N
+====
+There is I18N support and an english translation is included.
 
 Copyright (c) 2009 Go Tripod Ltd, released under the MIT license
