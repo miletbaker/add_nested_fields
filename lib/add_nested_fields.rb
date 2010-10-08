@@ -13,6 +13,7 @@ module AddNestedFields
 				form_builder.fields_for field, options[:object] , :child_index => 'NEW_RECORD' do |f|
 				html = render(:partial => options[:partial], :locals => { :f => f })
 					page << "$('#{dom_id}').insert({ bottom: '#{escape_javascript(html)}'.replace(/NEW_RECORD/g, new Date().getTime()) });"
+					page << options[:after_insertion] unless options[:after_insertion].blank?
 				end
 			end
 		end
