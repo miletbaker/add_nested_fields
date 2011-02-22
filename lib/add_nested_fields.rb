@@ -5,7 +5,7 @@ module AddNestedFields
 			options = {
 				:partial => field.to_s.singularize,
 				:label => I18n.t('add_nested_fields.add') + ' ' + \
-				          I18n.t(field, :scope => [:activerecord, :attributes, form_builder.object.class.to_s.underscore.downcase]).downcase,
+						  I18n.t(field, :scope => [:activerecord, :attributes, form_builder.object.class.to_s.underscore.downcase]).downcase,
 				:object => field.to_s.classify.constantize.new
 			}.merge(args.extract_options!)
 
@@ -32,7 +32,7 @@ module AddNestedFields
 					page << "#{confirm} $(this).up('.#{class_id}').remove()"
 				end
 			else
-				form_builder.hidden_field( :_delete, :value => "0") + link_to_function(options[:label]) do |page|
+				form_builder.hidden_field( :_destroy, :value => "0") + link_to_function(options[:label]) do |page|
 					page << "#{confirm} $(this).up('.#{class_id}').hide();$(this).previous().value = 1"
 				end
 			end
