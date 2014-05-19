@@ -5,7 +5,7 @@ module AddNestedFields
 			options = {
 				:partial => field.to_s.singularize,
 				:label => I18n.t('add_nested_fields.add') + ' ' + \
-				          I18n.t(field, :scope => [:activerecord, :attributes, form_builder.object.class.to_s.underscore.downcase]).downcase,
+						  I18n.t(field, :scope => [:activerecord, :attributes, form_builder.object.class.to_s.underscore.downcase]).downcase,
 				:object => field.to_s.classify.constantize.new
 			}.merge(args.extract_options!)
 
@@ -13,6 +13,7 @@ module AddNestedFields
 				form_builder.fields_for field, options[:object] , :child_index => 'NEW_RECORD' do |f|
 				html = render(:partial => options[:partial], :locals => { :f => f })
 					page << "$('#{dom_id}').insert({ bottom: '#{escape_javascript(html)}'.replace(/NEW_RECORD/g, new Date().getTime()) });"
+					page << options[:after_insertion] unless options[:after_insertion].blank?
 				end
 			end
 		end
@@ -31,7 +32,7 @@ module AddNestedFields
 					page << "#{confirm} $(this).up('.#{class_id}').remove()"
 				end
 			else
-				form_builder.hidden_field( :_delete, :value => "0") + link_to_function(options[:label]) do |page|
+				form_builder.hidden_field( :_destroy, :value => "0") + link_to_function(options[:label]) do |page|
 					page << "#{confirm} $(this).up('.#{class_id}').hide();$(this).previous().value = 1"
 				end
 			end
